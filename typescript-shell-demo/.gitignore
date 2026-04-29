@@ -3,4 +3,12 @@ dist
 .DS_Store
 *.log
 yarn-error.log
+npm-debug.log*
 .vite
+.cache
+coverage
+*.tsbuildinfo
+.idea
+.vscode
+.env
+.env.*
