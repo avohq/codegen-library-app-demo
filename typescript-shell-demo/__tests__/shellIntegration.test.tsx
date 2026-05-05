@@ -104,12 +104,12 @@ describe('Multi-app shell — instance isolation (avoA vs avoB)', () => {
     fireEvent.click(screen.getByTestId('track-button-b'));
 
     const logEventCalls = dummyAnalytics.recordedCalls.filter((c) => c.kind === 'logEvent');
-    // 6 required destination keys → 6 logEvent calls (same plan as AppA)
+    // 6 required destination keys → 6 logEvent calls
     expect(logEventCalls).toHaveLength(6);
-    // AppB fires Test Unidentify (different event from AppA's Test Empty Event)
+    // AppB models a different source from AppA — its events have different names.
     for (const call of logEventCalls) {
       const payload = call.payload as Record<string, unknown>;
-      expect(payload['eventName']).toBe('Test Unidentify');
+      expect(payload['eventName']).toBe('App B Sign Out');
     }
   });
 
@@ -128,7 +128,7 @@ describe('Multi-app shell — instance isolation (avoA vs avoB)', () => {
       (c) => (c.payload as Record<string, unknown>)['eventName'] === 'Test Empty Event',
     );
     const appBEvents = logEventCalls.filter(
-      (c) => (c.payload as Record<string, unknown>)['eventName'] === 'Test Unidentify',
+      (c) => (c.payload as Record<string, unknown>)['eventName'] === 'App B Sign Out',
     );
     expect(appAEvents).toHaveLength(6);
     expect(appBEvents).toHaveLength(6);
@@ -160,18 +160,18 @@ describe('Multi-app shell — instance isolation (avoA vs avoB)', () => {
     }
   });
 
-  it('AppB variant button fires Event With Variant Specific Allowed Values with an enum-typed prop', () => {
+  it('AppB plan-selected button fires App B Plan Selected with an enum-typed prop', () => {
     render(<AppB />);
     fireEvent.click(screen.getByTestId('track-button-b-variant'));
 
     const logEventCalls = dummyAnalytics.recordedCalls.filter((c) => c.kind === 'logEvent');
     expect(logEventCalls).toHaveLength(6);
-    const validVariants = new Set(['Event Value I', 'Value I', 'Value II', "Variant with ' symbol"]);
+    const validPlans = new Set(['Free', 'Pro', 'Enterprise', 'Trial']);
     for (const call of logEventCalls) {
       const payload = call.payload as Record<string, unknown>;
-      expect(payload['eventName']).toBe('Event With Variant Specific Allowed Values');
+      expect(payload['eventName']).toBe('App B Plan Selected');
       const props = payload['properties'] as Record<string, unknown>;
-      expect(validVariants.has(props['Event Property With Variant Specific Allowed Values'] as string)).toBe(true);
+      expect(validPlans.has(props['App B Plan'] as string)).toBe(true);
     }
   });
 

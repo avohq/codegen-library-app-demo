@@ -20,11 +20,11 @@ export type DestinationKey = "Segment" | "Amplitude" | "Mixpanel" | "Snowplow" |
 // Single-app callers (no shell): import appConfig from './AvoConfig';
 const codegenConfig: AvoCodegenConfig = {
   invokeConfig: {
-    schemaId: "REPLACE_WITH_YOUR_SCHEMA_ID",
-    actionId: "REPLACE_WITH_YOUR_ACTION_ID",
+    schemaId: "REPLACE_WITH_APP_B_SCHEMA_ID",
+    actionId: "REPLACE_WITH_APP_B_ACTION_ID",
     branchId: "master",
-    sourceId: "REPLACE_WITH_YOUR_SOURCE_ID",
-    inspectorApiKey: "REPLACE_WITH_YOUR_INSPECTOR_API_KEY",
+    sourceId: "REPLACE_WITH_APP_B_SOURCE_ID",
+    inspectorApiKey: "REPLACE_WITH_APP_B_INSPECTOR_API_KEY",
   },
   requiredDestinationKeys: ["Segment", "Amplitude", "Mixpanel", "Snowplow", "FacebookAnalytics", "CustomDest"],
   destinationApiKeys: {
