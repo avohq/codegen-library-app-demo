@@ -1,41 +1,43 @@
 import * as React from 'react';
 import { useAppBActionEvent, EVENT_TYPES } from '../shell/useActionEvent';
 import {
-  TestUnidentifyEvent,
-  EventWithVariantSpecificAllowedValuesEvent,
-  EventPropertyWithVariantSpecificAllowedValues,
-  type EventPropertyWithVariantSpecificAllowedValuesValueType,
+  AppBSignOutEvent,
+  AppBPlanSelectedEvent,
+  AppBPlan,
+  type AppBPlanValue,
 } from './avo/Avo';
 
-const VARIANTS: EventPropertyWithVariantSpecificAllowedValuesValueType[] = [
-  EventPropertyWithVariantSpecificAllowedValues.EVENT_VALUE_I,
-  EventPropertyWithVariantSpecificAllowedValues.VALUE_I,
-  EventPropertyWithVariantSpecificAllowedValues.VALUE_II,
-  EventPropertyWithVariantSpecificAllowedValues.VARIANT_WITH__SYMBOL,
+// AppB models a different Avo source than AppA. Its plan exposes a distinct
+// set of events (sign-out, plan-selected) and its own enum (AppBPlan).
+const PLANS: AppBPlanValue[] = [
+  AppBPlan.FREE,
+  AppBPlan.PRO,
+  AppBPlan.ENTERPRISE,
+  AppBPlan.TRIAL,
 ];
 
 export const AppB = () => {
   const trackAction = useAppBActionEvent();
 
-  const handleUnidentify = () => {
-    trackAction({ event: new TestUnidentifyEvent(), type: EVENT_TYPES.ACTION });
+  const handleSignOut = () => {
+    trackAction({ event: new AppBSignOutEvent(), type: EVENT_TYPES.ACTION });
   };
 
-  const handleVariant = () => {
-    const variant = VARIANTS[Math.floor(Math.random() * VARIANTS.length)] ?? VARIANTS[0]!;
+  const handlePlanSelected = () => {
+    const plan = PLANS[Math.floor(Math.random() * PLANS.length)] ?? PLANS[0]!;
     trackAction({
-      event: new EventWithVariantSpecificAllowedValuesEvent(variant),
+      event: new AppBPlanSelectedEvent(plan),
       type: EVENT_TYPES.ACTION,
     });
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <button data-testid="track-button-b" onClick={handleUnidentify}>
-        Track Unidentify (App B)
+      <button data-testid="track-button-b" onClick={handleSignOut}>
+        Track Sign Out (App B)
       </button>
-      <button data-testid="track-button-b-variant" onClick={handleVariant}>
-        Track Beverage Variant (App B)
+      <button data-testid="track-button-b-variant" onClick={handlePlanSelected}>
+        Track Plan Selected (App B)
       </button>
     </div>
   );

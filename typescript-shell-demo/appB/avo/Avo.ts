@@ -370,14 +370,14 @@ export const RequiredListSystemProperty = {
 export type RequiredListSystemPropertyType = typeof RequiredListSystemProperty;
 export type RequiredListSystemPropertyValueType = RequiredListSystemPropertyType[keyof RequiredListSystemPropertyType];
 
-export const EventPropertyWithVariantSpecificAllowedValues1 = {
-  'EVENT_VALUE_I': 'Event Value I',
-  'VALUE_I': 'Value I',
+export const AppBPlan1 = {
+  'FREE': 'Free',
+  'PRO': 'Pro',
   'VARIANT_VALUE_I': 'Variant Value I',
-  'VARIANT_WITH__SYMBOL': 'Variant with \' symbol',
+  'TRIAL': 'Trial',
 } as const;
-export type EventPropertyWithVariantSpecificAllowedValues1Type = typeof EventPropertyWithVariantSpecificAllowedValues1;
-export type EventPropertyWithVariantSpecificAllowedValues1ValueType = EventPropertyWithVariantSpecificAllowedValues1Type[keyof EventPropertyWithVariantSpecificAllowedValues1Type];
+export type AppBPlan1Type = typeof AppBPlan1;
+export type AppBPlan1ValueType = AppBPlan1Type[keyof AppBPlan1Type];
 
 export const EightIsNotACrime = {
   '8': '8',
@@ -423,14 +423,14 @@ export const EventPropertyWithSourceSpecificPropertyMatches = {
 export type EventPropertyWithSourceSpecificPropertyMatchesType = typeof EventPropertyWithSourceSpecificPropertyMatches;
 export type EventPropertyWithSourceSpecificPropertyMatchesValueType = EventPropertyWithSourceSpecificPropertyMatchesType[keyof EventPropertyWithSourceSpecificPropertyMatchesType];
 
-export const EventPropertyWithVariantSpecificAllowedValues = {
-  'EVENT_VALUE_I': 'Event Value I',
-  'VALUE_I': 'Value I',
-  'VALUE_II': 'Value II',
-  'VARIANT_WITH__SYMBOL': 'Variant with \' symbol',
+export const AppBPlan = {
+  'FREE': 'Free',
+  'PRO': 'Pro',
+  'ENTERPRISE': 'Enterprise',
+  'TRIAL': 'Trial',
 } as const;
-export type EventPropertyWithVariantSpecificAllowedValuesType = typeof EventPropertyWithVariantSpecificAllowedValues;
-export type EventPropertyWithVariantSpecificAllowedValuesValueType = EventPropertyWithVariantSpecificAllowedValuesType[keyof EventPropertyWithVariantSpecificAllowedValuesType];
+export type AppBPlanType = typeof AppBPlan;
+export type AppBPlanValue = AppBPlanType[keyof AppBPlanType];
 
 export const RequiredStringSystemProperty = {
   'WEB': 'Web',
@@ -951,10 +951,10 @@ export class TestEmptyEventEvent extends BaseAvoEvent {
   }
 }
 
-export class TestUnidentifyEvent extends BaseAvoEvent {
+export class AppBSignOutEvent extends BaseAvoEvent {
   readonly eventId = "H1DzwVYyw";
   readonly eventHash = "c483f9b76960ca543db15a13bd0f66e1d3e729ee59983e108cc882a886b480e8";
-  readonly eventName = "Test Unidentify";
+  readonly eventName = "App B Sign Out";
 
   constructor() {
     super();
@@ -962,22 +962,22 @@ export class TestUnidentifyEvent extends BaseAvoEvent {
 
   get properties(): Record<DestinationKey, AvoDestinationEvent> {
     return {
-      "Segment": { name: "Test Unidentify", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+      "Segment": { name: "App B Sign Out", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
 
       }) },
-      "Amplitude": { name: "Test Unidentify", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+      "Amplitude": { name: "App B Sign Out", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
 
       }) },
-      "Mixpanel": { name: "Test Unidentify", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+      "Mixpanel": { name: "App B Sign Out", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
 
       }) },
-      "Snowplow": { name: "Test Unidentify", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+      "Snowplow": { name: "App B Sign Out", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
 
       }) },
-      "FacebookAnalytics": { name: "Test Unidentify", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+      "FacebookAnalytics": { name: "App B Sign Out", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
 
       }) },
-      "CustomDest": { name: "Test Unidentify", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+      "CustomDest": { name: "App B Sign Out", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
 
       }) },
     };
@@ -2768,44 +2768,44 @@ export class SnowplowUnidentifyEvent extends BaseAvoEvent {
   }
 }
 
-export class EventWithVariantSpecificAllowedValuesEvent extends BaseAvoEvent {
-  readonly eventPropertyWithVariantSpecificAllowedValues: EventPropertyWithVariantSpecificAllowedValuesValueType;
+export class AppBPlanSelectedEvent extends BaseAvoEvent {
+  readonly eventPropertyWithVariantSpecificAllowedValues: AppBPlanValue;
 
   readonly eventId = "dfuLieo-Mx";
   readonly eventHash = "55cf9d7f3a2335612a52882551eb365b0985e11b3972ae324620d9ca1420fed4";
-  readonly eventName = "Event With Variant Specific Allowed Values";
+  readonly eventName = "App B Plan Selected";
 
-  constructor(eventPropertyWithVariantSpecificAllowedValues: EventPropertyWithVariantSpecificAllowedValuesValueType) {
+  constructor(eventPropertyWithVariantSpecificAllowedValues: AppBPlanValue) {
     super();
     this.eventPropertyWithVariantSpecificAllowedValues = eventPropertyWithVariantSpecificAllowedValues;
   }
 
   get properties(): Record<DestinationKey, AvoDestinationEvent> {
     return {
-      "Segment": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "Segment": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
       }) },
-      "Amplitude": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "Amplitude": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
       }) },
-      "Mixpanel": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "Mixpanel": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
       }) },
-      "Snowplow": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "Snowplow": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
       }) },
-      "FacebookAnalytics": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "FacebookAnalytics": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
       }) },
-      "CustomDest": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "CustomDest": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
       }) },
     };
   }
 
   override buildBaseProperties(): Record<string, unknown> {
     return Object.assign({}, AppSystemProperties.shared.toObject(), {
-      "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues,
+      "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues,
     });
   }
 
@@ -2824,43 +2824,43 @@ export class EventWithVariantSpecificAllowedValuesEvent extends BaseAvoEvent {
 }
 
 export class EventWithVariantSpecificAllowedValuesVariantIEvent extends BaseAvoEvent {
-  readonly eventPropertyWithVariantSpecificAllowedValues1: EventPropertyWithVariantSpecificAllowedValues1ValueType;
+  readonly eventPropertyWithVariantSpecificAllowedValues1: AppBPlan1ValueType;
 
   readonly eventId = "dfuLieo-Mx.vHxgn_wUG";
   readonly eventHash = "305c447bda8216a7bf3bfbeacf67220043f528c34f4688a49d3bfb6ec80a1dd4";
-  readonly eventName = "Event With Variant Specific Allowed Values";
+  readonly eventName = "App B Plan Selected";
 
-  constructor(eventPropertyWithVariantSpecificAllowedValues1: EventPropertyWithVariantSpecificAllowedValues1ValueType) {
+  constructor(eventPropertyWithVariantSpecificAllowedValues1: AppBPlan1ValueType) {
     super();
     this.eventPropertyWithVariantSpecificAllowedValues1 = eventPropertyWithVariantSpecificAllowedValues1;
   }
 
   get properties(): Record<DestinationKey, AvoDestinationEvent> {
     return {
-      "Segment": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "Segment": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
       }) },
-      "Amplitude": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "Amplitude": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
       }) },
-      "Mixpanel": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "Mixpanel": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
       }) },
-      "Snowplow": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "Snowplow": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
       }) },
-      "FacebookAnalytics": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "FacebookAnalytics": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
       }) },
-      "CustomDest": { name: "Event With Variant Specific Allowed Values", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
-        "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "CustomDest": { name: "App B Plan Selected", properties: Object.assign({}, AppSystemProperties.shared.toObject(), {
+        "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
       }) },
     };
   }
 
   override buildBaseProperties(): Record<string, unknown> {
     return Object.assign({}, AppSystemProperties.shared.toObject(), {
-      "Event Property With Variant Specific Allowed Values": this.eventPropertyWithVariantSpecificAllowedValues1,
+      "App B Plan": this.eventPropertyWithVariantSpecificAllowedValues1,
     });
   }
 

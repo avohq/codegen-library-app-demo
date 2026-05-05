@@ -46,9 +46,11 @@ yarn dev
 ```
 
 Open `http://localhost:5173/`. You'll see App A and App B side-by-side. Each
-app has two buttons firing different events. The bottom panel renders a live
-log of every callback the destination receives — tagged with which app and
-which destination key triggered it.
+app has two buttons firing different events from its own Avo source — App A
+fires `Test Empty Event` / `Test Name Mapping`; App B fires `App B Sign Out` /
+`App B Plan Selected`. The bottom panel renders a live log of every callback
+the destination receives — tagged with which app and which destination key
+triggered it.
 
 Other scripts:
 
@@ -146,15 +148,20 @@ Mixpanel SDKs) inside `shell/avo-shell.ts` instead of the dummy.
 
 The two-app setup demonstrates that:
 
-- Each app keeps its own `Avo.ts` event-class file. Even when the same source
-  generates them, the classes are distinct module-scoped instances.
+- Each app keeps its own `Avo.ts` event-class file generated from its own
+  Avo source / plan. In this example, App A's source defines events like
+  `Test Empty Event` and `Test Name Mapping`, while App B's source defines
+  a different surface — `App B Sign Out`, `App B Plan Selected`, plus its own
+  `AppBPlan` enum (Free / Pro / Enterprise / Trial). Each app only knows about
+  its own events; the shell mediates between them.
 - Each app has its own `AppSystemProperties` singleton — both must be
   configured before either app's events validate.
 - The Avo runtime maintains independent state per `avo.init` call (e.g., the
   sampling decision is computed per-instance).
 - The destinations record is per-app — you could wire Segment for App A
   but only Amplitude for App B. In this example, both apps use all six
-  destinations routed through the same dummy.
+  destinations routed through the same dummy so the demo can show fan-out
+  per destination key.
 
 ## Plugging in your own Avo plan
 
