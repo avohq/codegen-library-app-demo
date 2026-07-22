@@ -1,0 +1,25 @@
+reviews:
+  path_instructions:
+    - path: "kotlin-android-demo/library/src/main/kotlin/sh/avo/**"
+      instructions: >-
+        This file is verbatim Avo codegen output
+        (avo pull --forceFeatures KotlinLibraryInterface), intentionally kept
+        byte-identical to what the generator produces. Do not flag internal
+        implementation issues (logging style, timeouts, duplication, dead
+        config) — those belong in the upstream Avo codegen templates. Review
+        only for demo-integration concerns.
+    - path: "kotlin-android-demo/app*/src/main/kotlin/**/avo/Avo.kt"
+      instructions: >-
+        Generated per-source Avo codegen output, kept byte-identical to
+        generator output. Do not flag internal implementation issues; review
+        only for demo-integration concerns.
+    - path: "typescript-shell-demo/shell/AvoLibrary.ts"
+      instructions: >-
+        Verbatim Avo library-interface codegen output, kept byte-identical.
+        Do not flag internal implementation issues; review only for
+        demo-integration concerns.
+    - path: "typescript-shell-demo/app*/avo/Avo.ts"
+      instructions: >-
+        Generated per-source Avo codegen output, kept byte-identical to
+        generator output. Do not flag internal implementation issues; review
+        only for demo-integration concerns.
