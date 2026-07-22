@@ -59,17 +59,20 @@ class MainActivity : Activity() {
         logView = TextView(this).apply {
             typeface = Typeface.MONOSPACE
             textSize = 11f
-            text = "— no events yet —"
         }
         root.addView(ScrollView(this).apply { addView(logView) })
 
         setContentView(root)
 
+        // Rebuild the log from everything the destination has already received,
+        // so the view survives rotation / activity recreation.
+        val backlog = AvoShell.dummyAnalytics.entries
+        logView.text =
+            if (backlog.isEmpty()) EMPTY_LOG
+            else backlog.asReversed().joinToString("\n", transform = ::formatEntry)
+
         AvoShell.dummyAnalytics.onLog = { entry ->
-            runOnUiThread {
-                val line = "[${entry.appLabel} → ${entry.destinationKey}] ${entry.eventName} ${entry.properties}"
-                logView.text = "$line\n${logView.text}"
-            }
+            runOnUiThread { appendLogLine(formatEntry(entry)) }
         }
     }
 
@@ -80,13 +83,24 @@ class MainActivity : Activity() {
         super.onDestroy()
     }
 
+    private companion object {
+        const val EMPTY_LOG = "— no events yet —"
+    }
+
     private fun track(appLabel: String, avo: Avo, event: AvoEvent) {
         when (val result = AvoShell.track(appLabel, avo, event)) {
             is AvoResult.Success ->
-                logView.text = "sent '${event.eventName}' to ${result.value}\n${logView.text}"
+                appendLogLine("sent '${event.eventName}' to ${result.value}")
             is AvoResult.Failure ->
-                logView.text = "VERIFICATION FAILED: ${result.error.messages}\n${logView.text}"
+                appendLogLine("VERIFICATION FAILED: ${result.error.messages}")
         }
+    }
+
+    private fun formatEntry(entry: DummyAnalyticsDestination.LoggedEvent) =
+        "[${entry.appLabel} → ${entry.destinationKey}] ${entry.eventName} ${entry.properties}"
+
+    private fun appendLogLine(line: String) {
+        logView.text = if (logView.text == EMPTY_LOG) line else "$line\n${logView.text}"
     }
 
     private fun sectionTitle(text: String) = TextView(this).apply {
