@@ -3,17 +3,16 @@
 // destination fan-out.
 plugins {
     id("com.android.application")
-    kotlin("android")
 }
 
 android {
     namespace = "com.avodemo.shell"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.avodemo.shell"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
@@ -21,10 +20,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     testOptions {
@@ -36,7 +31,7 @@ dependencies {
     implementation(project(":appA"))
     implementation(project(":appB"))
 
-    testImplementation(kotlin("test"))
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.2.0")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
 }

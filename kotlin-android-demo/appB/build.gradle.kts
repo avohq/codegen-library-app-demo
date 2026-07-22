@@ -2,12 +2,11 @@
 // Same layout principle: only the source-specific file lives here.
 plugins {
     id("com.android.library")
-    kotlin("android")
 }
 
 android {
     namespace = "com.avodemo.appb"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21
@@ -18,10 +17,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -30,7 +25,7 @@ android {
 dependencies {
     api(project(":library"))
 
-    testImplementation(kotlin("test"))
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.2.0")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
 }
