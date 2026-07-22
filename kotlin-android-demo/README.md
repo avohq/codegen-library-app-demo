@@ -19,7 +19,7 @@ This pattern fits codebases where:
 
 ## What's in the box
 
-```
+```text
 library/                              — :library (com.android.library)
   src/main/kotlin/sh/avo/
     AvoLibraryInterface.kt            — the shared Avo runtime (codegen output)
@@ -78,7 +78,7 @@ module (real codebases can publish it as an internal artifact), and one
 (`com.avodemo.appa.avo` / `com.avodemo.appb.avo` instead of the default
 `sh.avo`) so the shell can depend on both without class-name collisions.
 
-```
+```text
                     ┌─────────────────────────────┐
                     │  :library                   │
                     │  sh.avo.AvoLibraryInterface │   (runtime, shared)

@@ -73,6 +73,13 @@ class MainActivity : Activity() {
         }
     }
 
+    override fun onDestroy() {
+        // dummyAnalytics is a process-wide singleton; drop the callback so it
+        // doesn't retain this activity after rotation/navigation.
+        AvoShell.dummyAnalytics.onLog = null
+        super.onDestroy()
+    }
+
     private fun track(appLabel: String, avo: Avo, event: AvoEvent) {
         when (val result = AvoShell.track(appLabel, avo, event)) {
             is AvoResult.Success ->
