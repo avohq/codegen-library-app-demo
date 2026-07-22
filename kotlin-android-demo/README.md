@@ -132,6 +132,25 @@ module (real codebases can publish it as an internal artifact), and one
    key. In a real codebase you'd dispatch to actual Segment / Amplitude /
    Mixpanel SDK clients here instead of the dummy.
 
+### DEV / STAGING vs PROD
+
+The runtime's behavior changes with the `AvoEnv` passed to `initAvo`. This demo
+runs everything in `AvoEnv.DEV`; don't assume the same semantics in production:
+
+- **DEV / STAGING** — `process` validates every event against the tracking
+  plan. With `strict = true` (the default) a violation throws
+  `AvoVerificationError` and nothing is sent; with `strict = false` it logs a
+  warning and still returns the payloads. Each `initAvo` and each processed
+  event also posts fire-and-forget usage telemetry to `https://api.avo.app/i`
+  (`AvoInvoke`) — network failures are silently swallowed, which is why the
+  unit tests pass offline.
+- **PROD** — validation is skipped entirely: an invalid event passes straight
+  through to your destinations, and `strict` has no effect. No `AvoInvoke`
+  telemetry is sent. Catch tracking-plan violations in dev/staging (strict
+  mode + tests, as this demo does) — production won't.
+- **`noop = true`** — `process` returns an empty map in every environment;
+  nothing reaches destinations or the network.
+
 ### Why two apps?
 
 - Each app keeps its own generated `Avo.kt` from its own Avo source. App A's
